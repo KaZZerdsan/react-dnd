@@ -1,0 +1,18 @@
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "jest", "prettier"],
+  "parser": "babel-eslint",
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/no-unused-prop-types": 0,
+    "react/forbid-prop-types": 0,
+    "react/prop-types": 1,
+    "import/first": 1,
+    "import/prefer-default-export": 1,
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "react/jsx-uses-vars": 2
+  },
+  "env": {
+    "browser": true
+  }
+}
