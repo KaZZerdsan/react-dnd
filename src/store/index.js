@@ -9,11 +9,10 @@ export const shapesAtom = atom({
 export const addShapeSelector = selector({
   key: 'addShapeSelector',
   get: ({ get }) => get(shapesAtom),
-  set: ({ get, set }, coordinates = {}) => {
-    const newShape = Object.assign(
-      {},
-      { ...DEFAULT_SHAPE_STATE, ...coordinates }
-    )
+  set: ({ get, set }, coordinates = { x: 0, y: 0 }) => {
+    const newShape = Object.assign({}, DEFAULT_SHAPE_STATE)
+    newShape.x = coordinates.x
+    newShape.y = coordinates.y
     const _oldShapes = JSON.parse(JSON.stringify(get(shapesAtom)))
     if (_oldShapes.length < 1) {
       newShape.id = 1
