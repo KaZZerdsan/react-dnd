@@ -5,6 +5,7 @@ import {
   addShapeSelector,
   backgroundImageAtom,
   editShapeSelector,
+  removeShapeSelector,
   selectShapeSelector,
   shapesAtom,
 } from '../store'
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
   overflow-x: hidden;
   background: url(${props => props.background});
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 600px contain;
   background-position: 50% 50%;
 `
 
@@ -39,6 +40,7 @@ const Control = () => {
   const shapes = useRecoilValue(shapesAtom)
   const selectShape = useSetRecoilState(selectShapeSelector)
   const addShape = useSetRecoilState(addShapeSelector)
+  const removeShape = useSetRecoilState(removeShapeSelector)
   const [selectedShape, setShape] = useRecoilState(editShapeSelector)
   const [label] = useState(document.createElement('span'))
 
@@ -102,12 +104,19 @@ const Control = () => {
     selectShape(id)
   }
 
+  const handleRemove = (e, shape) => {
+    e.stopPropagation()
+    e.preventDefault()
+    removeShape(shape)
+  }
+
   return (
     <Wrapper background={bgImage} onClick={handleShapeCreate}>
       {shapes.map(shape => (
         <Shape
           shape={shape}
           onClick={e => handleClick(e, shape.id)}
+          onContextMenu={e => handleRemove(e, shape)}
           key={shape.id.toString()}
           onDragStart={e => handleDragStart(shape, e)}
           onDrag={e => handleDrag(shape, e)}
@@ -124,6 +133,7 @@ const Shape = React.memo(
       {...props.shape}
       draggable
       onClick={props.onClick}
+      onContextMenu={props.onContextMenu}
       onDragStart={props.onDragStart}
       onDrag={props.onDrag}
       onDragEnd={props.onDragEnd}

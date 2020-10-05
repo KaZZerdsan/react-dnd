@@ -7,7 +7,7 @@ import { backgroundImageAtom } from '../../store'
 
 const RemoveButton = styled.button`
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
@@ -28,7 +28,7 @@ const RemoveButton = styled.button`
 
 const UploadButton = styled.button`
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   width: 60px;
   height: 60px;
