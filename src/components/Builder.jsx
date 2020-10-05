@@ -7,13 +7,13 @@ import { addShapeSelector } from '../store'
 const Wrapper = styled.div`
   width: 300px;
   height: 100%;
-  border-right: 1px solid #CCC;
+  border-right: 1px solid #ccc;
 `
 
 const Header = styled.div`
   width: 100%;
   height: 48px;
-  border-bottom: 1px solid #CCC;
+  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +34,7 @@ const AddButton = styled.button`
   color: #f900c3;
   font-size: 26px;
   line-height: 26px;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
   &:hover {
     border: 1px solid #fff;

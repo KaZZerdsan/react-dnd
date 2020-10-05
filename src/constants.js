@@ -5,5 +5,5 @@ export const DEFAULT_SHAPE_STATE = {
   x: 0,
   y: 0,
   color: '#000000',
-  selected: false
+  selected: false,
 }

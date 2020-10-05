@@ -7,8 +7,6 @@ const Label = styled.span`
   font-size: 22px;
 `
 
-const Title = React.memo(({title}) => (
-  <Label>{title}</Label>
-))
+const Title = React.memo(({ title }) => <Label>{title}</Label>)
 
 export default Title

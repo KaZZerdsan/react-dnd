@@ -11,11 +11,14 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `
 
-const Item = React.memo(({title, value, onChange}) => (
-  <Wrapper>
-    <Title title={title} />
-    <Value value={value} title={title} onChange={onChange} />
-  </Wrapper>
-))
+const Item = React.memo(
+  props => (
+    <Wrapper>
+      <Title title={props.title} />
+      <Value {...props} />
+    </Wrapper>
+  ),
+  (next, prev) => next.value === prev.value
+)
 
 export default Item
