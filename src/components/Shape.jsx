@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { SketchPicker } from 'react-color'
-import { editShapeSelector, selectShapeSelector } from '../store'
+import { editShapeSelector, removeShapeSelector, selectShapeSelector } from '../store'
 import { useSetRecoilState } from 'recoil'
 
 const Wrapper = styled.div`
@@ -43,6 +43,7 @@ const Shape = React.memo(props => {
   const [open, setOpen] = useState(false)
   const selectShape = useSetRecoilState(selectShapeSelector)
   const setShape = useSetRecoilState(editShapeSelector)
+  const removeShape = useSetRecoilState(removeShapeSelector)
   const ref = useRef()
 
   const handleSelect = useCallback(
@@ -59,6 +60,11 @@ const Shape = React.memo(props => {
     [setShape]
   )
 
+  const remove = (shape) => (e) => {
+    e.preventDefault()
+    removeShape(shape)
+  }
+
   const handleOpen = useCallback(() => {
     setOpen(true)
     setTimeout(() => ref.current && ref.current.focus(), 1)
@@ -71,7 +77,11 @@ const Shape = React.memo(props => {
   }, [ref, setOpen])
 
   return (
-    <Wrapper selected={props.selected} onClick={() => handleSelect(props)}>
+    <Wrapper
+      selected={props.selected}
+      onClick={() => handleSelect(props)}
+      onContextMenu={remove({...props})}
+    >
       <ID>{props.id}</ID>
       <ColorPreview color={props.color} />
       <CustomPicker defaultValue={props.color} onFocus={handleOpen} />

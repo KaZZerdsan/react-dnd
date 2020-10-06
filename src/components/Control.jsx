@@ -9,6 +9,7 @@ import {
   selectShapeSelector,
   shapesAtom,
 } from '../store'
+import getBorderColor from '../utils/getBorderColor'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const Figure = styled.div`
   top: ${props => props.y}px;
   background: ${props => props.color};
   box-shadow: ${props =>
-    props.selected ? 'inset 0 0 0px 2px #76ab6e' : 'none'};
+    props.selected ? 'inset 0 0 0px 2px ' + getBorderColor(props.color) : 'none'};
   border-radius: 50%;
 `
 
@@ -75,6 +76,7 @@ const Control = () => {
 
   const getCoordinates = e => {
     e.persist && e.persist()
+    console.log(e)
     let { pageX, pageY } = e
     if (pageX < 310) pageX = 310
     return { x: pageX - 310, y: pageY - 10 }
